@@ -9,8 +9,7 @@ You should run that command and read that help section for more information.
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 
-require('custom.init')
-
+vim.g.mapleader = " "
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    https://github.com/folke/lazy.nvim
 --    `:help lazy.nvim.txt` for more info
@@ -52,7 +51,11 @@ require('lazy').setup({
       "nvim-tree/nvim-web-devicons",
     },
     config = function()
-      require("nvim-tree").setup {}
+      local nvim_tree = require("nvim-tree")
+
+      nvim_tree.setup {}
+
+      vim.api.nvim_set_keymap('n', '<leader>e', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
     end,
   },
   -- NOTE: This is where your plugins related to LSP can be installed.
@@ -211,6 +214,8 @@ require('lazy').setup({
   { import = 'custom.plugins' },
 }, {})
 
+-- require all the other stuff
+require('custom.init')
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
