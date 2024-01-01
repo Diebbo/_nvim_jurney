@@ -27,3 +27,4 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 
 -- delte backwork
 vim.keymap.set('i', '<C-BS>', '<C-w>', { noremap = true, silent = true })
+
