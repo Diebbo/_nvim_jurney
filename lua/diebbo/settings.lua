@@ -1,6 +1,5 @@
 -- [[ Setting options ]]
 -- See `:help vim.o`
--- NOTE: You can change these options as you wish!
 
 -- Set highlight on search
 vim.o.hlsearch = false
@@ -50,3 +49,23 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 	group = highlight_group,
 	pattern = '*',
 })
+
+-- [[ Indentation ]]
+-- See `:help vim.bo`
+-- Indentation
+vim.bo.tabstop = 2
+vim.bo.shiftwidth = 2
+vim.bo.softtabstop = 2
+vim.bo.expandtab = true
+
+local set = vim.opt
+
+-- [[ Split ]]
+set.splitbelow = true
+set.splitright = true
+
+-- [[ Wildmenu ]]
+-- See `:help wildmenu`
+set.wildmenu = true
+set.wildmode = 'longest:full,full'
+
