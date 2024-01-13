@@ -1,5 +1,10 @@
 return {
-	-- NOTE: First, some plugins that don't require any configuration
+
+	-- jdtls
+	'mfussenegger/nvim-jdtls',
+
+	-- tmux integrations
+	'christoomey/vim-tmux-navigator',
 
 	-- Git related plugins
 	'tpope/vim-fugitive',
