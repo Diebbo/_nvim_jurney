@@ -81,7 +81,11 @@ return {
     --  define the property 'filetypes' to the map in question.
     local servers = {
       -- C
-      clangd = {},
+      clangd = {
+        -- set tabspaces to 4
+        
+
+      },
 
       gopls = {},
       pyright = {},
