@@ -1,0 +1,37 @@
+2024-06-16T21:10:35 Error  ERROR Error executing vim.schedule lua callback: ...cal/share/nvim/lazy/gitsigns.nvim/lua/gitsigns/async.lua:105: bad argument #3 to 'unpack' (number expected, got function)
+stack traceback:
+	[C]: in function 'unpack'
+	...cal/share/nvim/lazy/gitsigns.nvim/lua/gitsigns/async.lua:105: in function 'cb'
+	...cal/share/nvim/lazy/gitsigns.nvim/lua/gitsigns/async.lua:127: in function 'cb'
+	...l/share/nvim/lazy/gitsigns.nvim/lua/gitsigns/manager.lua:450: in function <...l/share/nvim/lazy/gitsigns.nvim/lua/gitsigns/manager.lua:435>
+2024-06-16T21:11:01 Error  ERROR Error executing vim.schedule lua callback: ...cal/share/nvim/lazy/gitsigns.nvim/lua/gitsigns/async.lua:105: bad argument #3 to 'unpack' (number expected, got function)
+stack traceback:
+	[C]: in function 'unpack'
+	...cal/share/nvim/lazy/gitsigns.nvim/lua/gitsigns/async.lua:105: in function 'cb'
+	...cal/share/nvim/lazy/gitsigns.nvim/lua/gitsigns/async.lua:127: in function 'cb'
+	...l/share/nvim/lazy/gitsigns.nvim/lua/gitsigns/manager.lua:450: in function <...l/share/nvim/lazy/gitsigns.nvim/lua/gitsigns/manager.lua:435>
+2024-06-16T21:11:30 Error  ERROR E486: Pattern not found: fole
+2024-06-16T21:11:50 Error  ERROR E5108: Error executing lua ...al/share/nvim/lazy/which-key.nvim/lua/which-key/text.lua:26: attempt to index local 'line' (a nil value)
+stack traceback:
+	...al/share/nvim/lazy/which-key.nvim/lua/which-key/text.lua:26: in function 'fix_nl'
+	...al/share/nvim/lazy/which-key.nvim/lua/which-key/text.lua:37: in function 'set'
+	.../share/nvim/lazy/which-key.nvim/lua/which-key/layout.lua:199: in function 'layout'
+	...al/share/nvim/lazy/which-key.nvim/lua/which-key/view.lua:308: in function 'on_keys'
+	...al/share/nvim/lazy/which-key.nvim/lua/which-key/view.lua:246: in function 'open'
+	...al/share/nvim/lazy/which-key.nvim/lua/which-key/init.lua:49: in function 'show'
+	[string :lua]:1: in main chunk
+2024-06-16T21:12:07 Error  ERROR E5108: Error executing lua ...al/share/nvim/lazy/which-key.nvim/lua/which-key/text.lua:26: attempt to index local 'line' (a nil value)
+stack traceback:
+	...al/share/nvim/lazy/which-key.nvim/lua/which-key/text.lua:26: in function 'fix_nl'
+	...al/share/nvim/lazy/which-key.nvim/lua/which-key/text.lua:37: in function 'set'
+	.../share/nvim/lazy/which-key.nvim/lua/which-key/layout.lua:199: in function 'layout'
+	...al/share/nvim/lazy/which-key.nvim/lua/which-key/view.lua:308: in function 'on_keys'
+	...al/share/nvim/lazy/which-key.nvim/lua/which-key/view.lua:246: in function 'open'
+	...al/share/nvim/lazy/which-key.nvim/lua/which-key/init.lua:49: in function 'show'
+	[string :lua]:1: in main chunk
+2024-06-16T21:12:35 Error  ERROR Error executing vim.schedule lua callback: ...cal/share/nvim/lazy/gitsigns.nvim/lua/gitsigns/async.lua:105: bad argument #3 to 'unpack' (number expected, got function)
+stack traceback:
+	[C]: in function 'unpack'
+	...cal/share/nvim/lazy/gitsigns.nvim/lua/gitsigns/async.lua:105: in function 'cb'
+	...cal/share/nvim/lazy/gitsigns.nvim/lua/gitsigns/async.lua:127: in function 'cb'
+	...l/share/nvim/lazy/gitsigns.nvim/lua/gitsigns/manager.lua:450: in function <...l/share/nvim/lazy/gitsigns.nvim/lua/gitsigns/manager.lua:435>
