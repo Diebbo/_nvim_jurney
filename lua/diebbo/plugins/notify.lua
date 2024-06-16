@@ -1,11 +1,11 @@
 return {
   'rcarriga/nvim-notify',
   config = function()
-    vim.notify = require('notify')
+    vim.notify = require 'notify'
 
     require('notify').setup {
-      stages = 'fade_in_slide_out',
-      timeout = 5000,
+      stages = 'fade',
+      timeout = 3000,
       icons = {
         ERROR = '',
         WARN = '',
