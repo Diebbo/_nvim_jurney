@@ -13,6 +13,7 @@ return {
         DEBUG = '',
         TRACE = '✎',
       },
+      background_colour = '#000000',
     }
   end,
 }
