@@ -88,7 +88,6 @@ return {
       rust_analyzer = {},
 
       -- Web Dev
-      tsserver = {},
       html = { filetypes = { 'html', 'twig', 'hbs' } },
       cssls = {},
       angularls = {},
