@@ -40,7 +40,7 @@ return {
     vim.api.nvim_create_autocmd('BufWritePre', {
       pattern = '*.R',
       callback = function()
-        vim.lsp.buf.format { async = true }
+        vim.lsp.buf.format { async = false }
       end,
     })
   end,
