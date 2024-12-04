@@ -59,7 +59,7 @@ return {
 				end, { 'i', 's' }),
 			},
 			sources = {
-				{ name = 'nvim_lsp' },
+				{ name = 'nvim-lsp' },
 				{ name = 'luasnip' },
 			},
 		}

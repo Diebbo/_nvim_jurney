@@ -27,11 +27,3 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 
 -- delte backwork
 vim.keymap.set('i', '<C-BS>', '<C-w>', { noremap = true, silent = true })
-
--- [[ Plugin Keymaps ]]
-vim.keymap.set('n', '<leader>cqq', function()
-	local input = vim.fn.input('Quick Chat: ')
-	if input ~= '' then
-		require('CopilotChat').ask(input, { selection = require('CopilotChat.select').buffer })
-	end
-end, { desc = 'CopilotChat - Quick chat' })
