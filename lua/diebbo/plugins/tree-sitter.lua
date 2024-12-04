@@ -31,7 +31,8 @@ return {
 					'markdown_inline',
 					'r',
 					'rnoweb',
-					'yaml'
+					'yaml',
+					'vue',
 				},
 
 				-- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)

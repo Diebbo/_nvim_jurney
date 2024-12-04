@@ -102,6 +102,9 @@ return {
       },
     }
 
+    require('lspconfig').volar.setup {
+      filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json' },
+    }
     -- Setup neovim lua configuration
     require('neodev').setup()
 

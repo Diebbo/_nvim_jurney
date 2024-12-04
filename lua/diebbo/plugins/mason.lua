@@ -1,7 +1,9 @@
 return {
-    'williamboman/mason.nvim',
-    opts = {
-      -- Automatically install LSPs for the following languages
+  'williamboman/mason.nvim',
+  'williamboman/mason-lspconfig.nvim',
+  -- Automatically install LSPs for the following languages
+  config = function()
+    require('mason-lspconfig').setup {
       ensure_installed = {
         'clangd',
         'gopls',
@@ -16,11 +18,13 @@ return {
         'typescript-language-server',
         'eslint-lsp',
         'prettier',
+        'vue-language-server',
+        'vls',
 
         -- dap
         'js-debug-adapter',
         'codelldb',
       },
-    },
-    'williamboman/mason-lspconfig.nvim',
+    }
+  end,
 }
