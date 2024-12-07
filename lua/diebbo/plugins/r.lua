@@ -16,8 +16,8 @@ return {
         end,
       },
       R_args = { '--quiet', '--no-save' },
-      min_editor_width = 72,
-      rconsole_width = 78,
+      min_editor_width = 60,
+      rconsole_width = 30,
       objbr_mappings = { -- Object browser keymap
         c = 'class', -- Call R functions
         ['<localleader>gg'] = 'head({object}, n = 15)', -- Use {object} notation to write arbitrary R code.
