@@ -100,11 +100,26 @@ return {
           diagnostics = { disable = { 'missing-fields' } },
         },
       },
+      ts_ls = {
+        init_options = {
+          plugins = {
+            {
+              name = '@vue/typescript-plugin',
+              languages = { 'javascript', 'typescript', 'vue' },
+            },
+          },
+        },
+        filetypes = {
+          'javascript',
+          'typescript',
+          'vue',
+        },
+        cmd = {
+          'vue'
+        }
+      },
     }
 
-    require('lspconfig').volar.setup {
-      filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json' },
-    }
     -- Setup neovim lua configuration
     require('neodev').setup()
 

@@ -11,6 +11,8 @@ return {
 
 		-- Adds a number of user-friendly snippets
 		'rafamadriz/friendly-snippets',
+		'hrsh7th/cmp-buffer', -- source for text in buffer
+		'hrsh7th/cmp-path', -- source for file system paths
 	},
 	config = function()
 		-- [[ Configure nvim-cmp ]]
@@ -27,7 +29,7 @@ return {
 				end,
 			},
 			completion = {
-				completeopt = 'menu,menuone'
+				completeopt = 'menu,menuone',
 			},
 			mapping = cmp.mapping.preset.insert {
 				['<C-n>'] = cmp.mapping.select_next_item(),
@@ -63,5 +65,5 @@ return {
 				{ name = 'luasnip' },
 			},
 		}
-	end
+	end,
 }
