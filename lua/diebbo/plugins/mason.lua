@@ -20,6 +20,7 @@ return {
         'prettier',
         'vue-language-server',
         'vls',
+        'bashls',
 
         -- dap
         'js-debug-adapter',
