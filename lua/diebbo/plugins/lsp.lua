@@ -11,6 +11,9 @@ return {
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
       { 'j-hui/fidget.nvim', opts = {} },
 
+      -- capabilities for blink.cpm
+      'saghen/blink.cmp',
+
       -- Additional lua configuration, makes nvim stuff amazing!
       'folke/neodev.nvim',
     },
@@ -134,8 +137,7 @@ return {
       require('neodev').setup()
 
       -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+      local capabilities = require('blink.cmp').get_lsp_capabilities()
 
       -- Ensure the servers above are installed
       local mason_lspconfig = require 'mason-lspconfig'
