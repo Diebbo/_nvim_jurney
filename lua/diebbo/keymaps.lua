@@ -38,3 +38,7 @@ vim.keymap.set('v', '<leader>x', ':lua <CR>', { desc = 'Execute selected lua cod
 -- oil
 vim.api.nvim_set_keymap('n', '<leader>o', '<cmd>Oil<CR>',
   { desc = 'Open oil on current file' })
+
+-- exit terminal mode
+vim.api.nvim_set_keymap('t', '<Esc><Esc>', '<C-\\><C-n>',
+  { desc = 'Exit terminal mode' })
