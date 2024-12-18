@@ -88,7 +88,6 @@ return {
         },
 
         gopls = {},
-        pyright = {},
         rust_analyzer = {},
 
         -- Web Dev
@@ -126,6 +125,8 @@ return {
             cmd = { '/bin/bash-language-server', 'start' },
             root_dir = require('lspconfig.util').root_pattern('.git', vim.fn.getcwd()),
           },
+
+          basedpyright = {},
         },
       }
 

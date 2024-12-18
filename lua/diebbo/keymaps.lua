@@ -34,3 +34,7 @@ km.set('i', '<C-BS>', '<C-w>', { noremap = true, silent = true })
 km.set('n', '<space><space>x', '<cmd>source %<CR>', { desc = 'Execute current lua file' })
 km.set('n', '<leader>x', ':.lua<CR>', { desc = 'Execute current lua line' })
 vim.keymap.set('v', '<leader>x', ':lua <CR>', { desc = 'Execute selected lua code' })
+
+-- oil
+vim.api.nvim_set_keymap('n', '<leader>o', '<cmd>Oil<CR>',
+  { desc = 'Open oil on current file' })
