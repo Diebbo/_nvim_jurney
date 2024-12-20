@@ -98,4 +98,5 @@ vim.api.nvim_set_keymap("n", "<leader>fw", ":Floatwin<CR>",
 vim.api.nvim_set_keymap("n", "<leader>ft", ":Floaterm<CR>",
   { noremap = true, silent = true, desc = "Toggle floating terminal" })
 
-return M
+-- return M
+return {}
