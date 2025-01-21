@@ -42,3 +42,9 @@ vim.api.nvim_set_keymap('n', '<leader>o', '<cmd>Oil<CR>',
 -- exit terminal mode
 vim.api.nvim_set_keymap('t', '<Esc><Esc>', '<C-\\><C-n>',
   { desc = 'Exit terminal mode' })
+
+-- [[ Spell check ]]
+vim.api.nvim_set_keymap('n', '<leader>us', '<cmd>setlocal spell!<CR>',
+  { desc = 'Toggle spell check' })
+vim.api.nvim_set_keymap('n', '<leader>it', '<cmd>setlocal spell spelllang=it<CR>',
+  { desc = 'Toggle spell check italian' })
