@@ -42,6 +42,32 @@ return {
               "}" }),
           i(0),
         }),
+        s("MCInt", { -- Monte Carlo Integration
+          t(
+            {
+              "Nsim <- 10^3",
+              "x=sample(Nsim)",
+              "hn <- mean(h(x))",
+              "err <- mean((h(x)-hn)^2)/Nsim",
+            }),
+        }),
+        s("imp-sampling", {
+          t(
+            {
+              "Nsim <- 10^4",
+              "y <- rg(Nsim)",
+              "weit <- h(y)/g(y)",
+              "is <- mean(f(y) * weit)",
+              "err_is <- mean((f(y) * weit - is)^2)/Nsim",
+              "is_plot <- cumsum(f(y)*weit)/(1:Nsim)",
+              "par(mfrow=c(2,1))",
+              "hist(y, col=\"lightblue\", border=\"white\")",
+              "plot(is_plot, type=\"l\")",
+              "lines(is_plot + 2 * err_is, col=\"purple\", add=T, lwd = 0.5, lty = 2)",
+              "lines(is_plot - 2 * err_is, col=\"red\", add=T, lwd = 0.5, lty = 2)",
+            }
+          ),
+        })
       })
 
 
