@@ -17,6 +17,34 @@ return {
       -- https://www.youtube.com/watch?v=FmHhonPjvvA
 
 
+
+
+      ls.add_snippets("r", {
+        s("ARalgorithm", {
+          t(
+            { "ARalgorithm <- function(n, f, g, rg, m, report = TRUE) {",
+              "\tx <- rep(0, n)",
+              "\tntry <- 0",
+              "\tfor (i in 1:n) {",
+              "\t\tdone <- FALSE",
+              "\t\twhile (!done) {",
+              "\t\t\tntry <- ntry + 1",
+              "\t\t\ty <- rg(x)",
+              "\t\t\tif (f(y) / (g(y) * m) <= 1) {",
+              "\t\t\t\tx <- y",
+              "\t\t\t\tdone <- TRUE",
+              "\t\t\t}",
+              "\t}",
+              "\tif (report) {",
+              "\t\tcat(\"ntry = \", ntry, \"n\")",
+              "\t}",
+              "\treturn(x)",
+              "}" }),
+          i(0),
+        }),
+      })
+
+
       ls.add_snippets("lua", {
         s("hello2", {
           t('print("Hello'),
