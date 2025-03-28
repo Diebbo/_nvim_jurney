@@ -1,6 +1,5 @@
 return {
   {
-    enabled = false,
     'mfussenegger/nvim-dap',
     dependencies = {
       -- Creates a beautiful debugger UI
@@ -34,6 +33,16 @@ return {
           'delve',
           'js-debug-adapter',
           'codelldb',
+        },
+      }
+
+      --  C
+      dap.adapters.codelldb = {
+        type = "server",
+        port = "${port}",
+        executable = {
+          command = "codelldb",
+          args = { "--port", "${port}" },
         },
       }
 
