@@ -4,6 +4,8 @@ return {
     dependencies = {
       'rafamadriz/friendly-snippets',
       'L3MON4D3/LuaSnip',
+      'allaman/emoji.nvim',
+      "saghen/blink.compat",
     },
     version = '*',
     ---@module 'blink.cmp'
@@ -17,9 +19,23 @@ return {
       },
       snippets = { preset = 'luasnip' },
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer' },
+        default = { 'lsp', 'path', 'snippets', 'buffer', 'emoji' },
         -- optionally disable cmdline completions
         -- cmdline = {},
+        providers = {
+          emoji = {
+            name = "emoji",
+            module = "blink.compat.source",
+            -- overwrite kind of suggestion
+            transform_items = function(ctx, items)
+              local kind = require("blink.cmp.types").CompletionItemKind.Text
+              for i = 1, #items do
+                items[i].kind = kind
+              end
+              return items
+            end,
+          },
+        },
       },
 
     },
