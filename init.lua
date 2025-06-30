@@ -10,6 +10,7 @@ You should run that command and read that help section for more information.
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 
 vim.g.mapleader = " "
+vim.opt.termguicolors = true
 
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
