@@ -14,13 +14,15 @@ return {
       --   "BufNewFile /home/diebbo/obsidian/Note di Diebbo/*.md",
     },
     opts = {
-      workspace = {
-        name = 'obsidian',
-        path = '~/obsidian/note-di-diebbo',
+      workspaces = {
+        {
+          name = 'obsidian',
+          path = '/home/diebbo/obsidian/note-di-diebbo/',
+        },
       },
       completion = {
         -- Set to false to disable completion.
-        nvim_cmp = true,
+        nvim_cmp = false,
         -- Trigger completion at 2 chars.
         min_chars = 2,
       },
