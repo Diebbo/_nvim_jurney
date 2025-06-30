@@ -2,7 +2,7 @@ return {
     'jay-babu/mason-nvim-dap.nvim',
     dependencies = {
         'rcarriga/nvim-dap-ui',
-        'williamboman/mason.nvim',
+        'mason-org/mason.nvim',
         'leoluz/nvim-dap-go',
         'mxsdev/nvim-dap-vscode-js',
     },
