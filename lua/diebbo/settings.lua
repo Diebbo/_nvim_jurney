@@ -1,6 +1,5 @@
 -- [[ Setting options ]]
 -- See `:help vim.o`
-
 -- Set highlight on search
 vim.o.hlsearch = false
 
@@ -38,6 +37,7 @@ vim.o.completeopt = 'menuone,noselect'
 
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
+vim.api.nvim_set_option("termguicolors", true)
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
@@ -71,3 +71,5 @@ set.wildmode = 'longest:full,full'
 
 -- [[ Spell ]]
 set.spelllang = 'en,it'
+
+vim.opt_local.conceallevel = 2
