@@ -58,6 +58,7 @@ vim.bo.shiftwidth = 2
 vim.bo.softtabstop = 2
 vim.bo.expandtab = true
 
+
 local set = vim.opt
 
 -- [[ Split ]]
@@ -69,7 +70,20 @@ set.splitright = true
 set.wildmenu = true
 set.wildmode = 'longest:full,full'
 
+-- [[ List ]]
+set.list = true
+vim.opt.listchars:append("space:·")
+
 -- [[ Spell ]]
+set.spell = true
 set.spelllang = 'en,it'
 
 vim.opt_local.conceallevel = 2
+
+-- [[ virtual lines ]]
+vim.diagnostic.config({
+  -- Use the default configuration
+  virtual_lines = {
+    current_line = true,
+  }
+})
