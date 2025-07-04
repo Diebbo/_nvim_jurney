@@ -1,4 +1,4 @@
-Servers = {
+local Servers = {
   -- C/C++
   clangd = {},
 
@@ -63,12 +63,43 @@ Servers = {
   },
 
   -- Python
-  basedpyright = {},
+  basedpyright = {
+    basedpyright = {
+      analysis = {
+        inlayHints = {
+          variableTypes = true,
+          functionReturnTypes = true,
+          functionParameterTypes = true,
+        },
+      },
+    },
+    python = {
+      analysis = {
+        typeCheckingMode = "basic", -- can be "off", "basic", or "strict"
+        autoSearchPaths = true,
+        useLibraryCodeForTypes = true,
+      },
+    },
+  },
 
   -- Bash
   bashls = {
     filetypes = { 'sh', 'bash' },
   },
+}
+
+
+local Linters = {
+  "prettier", -- prettier formatter
+  "stylua",   -- lua formatter
+  "isort",    -- python formatter
+  "bibtex-tidy",
+  "pylint",
+  "clangd",
+  "denols",
+  "eslint_d",
+  "black",
+  "ruff",
 }
 
 return {
@@ -104,26 +135,27 @@ return {
       },
     })
 
-    vim.notify("installing lsp for " .. vim.inspect(vim.tbl_keys(Servers)), vim.log.levels.INFO)
+    -- vim.notify("installing lsp for " .. vim.inspect(vim.tbl_keys(Servers)), vim.log.levels.INFO)
     mason_lspconfig.setup({
       automatic_enable = false,
       -- servers for mason to install
       ensure_installed = vim.tbl_keys(Servers),
     })
 
+
     mason_tool_installer.setup({
-      ensure_installed = {
-        "prettier", -- prettier formatter
-        "stylua",   -- lua formatter
-        "isort",    -- python formatter
-        "pylint",
-        "clangd",
-        "denols",
-        -- { 'eslint_d', version = '13.1.2' },
-      },
+      ensure_installed = Linters,
 
       -- NOTE: mason BREAKING Change! Removed setup_handlers
       -- moved lsp configuration settings back into lspconfig.lua file
     })
+  end,
+  -- Function to get the installed servers
+  get_installed_servers = function()
+    -- concat the servers and the linters
+    return Servers
+  end,
+  get_installed_linters = function()
+    return Linters
   end,
 }
