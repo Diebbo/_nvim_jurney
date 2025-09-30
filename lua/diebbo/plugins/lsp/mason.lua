@@ -14,7 +14,10 @@ local Servers = {
   },
   cssls = {},
   angularls = {},
-
+  tinymist = {},
+  coq_lsp = {
+    filetypes = { 'coq', 'v' },
+  },
   -- Lua
   lua_ls = {
     Lua = {

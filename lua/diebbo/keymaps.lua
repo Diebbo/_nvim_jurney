@@ -48,3 +48,6 @@ vim.api.nvim_set_keymap('n', '<leader>us', '<cmd>setlocal spell!<CR>',
   { desc = 'Toggle spell check' })
 vim.api.nvim_set_keymap('n', '<leader>it', '<cmd>setlocal spell spelllang=it<CR>',
   { desc = 'Toggle spell check italian' })
+
+-- [[ Save and exit ]]
+vim.api.nvim_set_keymap('n', '<leader>ww', '<cmd>wq<CR>', { desc = 'Save and exit' })

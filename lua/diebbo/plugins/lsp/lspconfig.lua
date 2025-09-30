@@ -15,10 +15,10 @@ return {
             desc = 'LSP: ' .. desc
           end
 
-          vim.keymap.set('n', keys, func, { buffer = ev.buf, desc = desc })
+          vim.keymap.set('n', keys, func, { buffer = ev.buf, desc = desc, noremap = true, silent = true })
         end
 
-        print('LSP attached to buffer: ' .. ev.buf)
+        -- print('LSP attached to buffer: ' .. ev.buf)
 
         -- Set some keymaps for LSP
         nmap('<leader>ll', function()
@@ -28,10 +28,10 @@ return {
         nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
         nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
-        nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
+        nmap('gd', function () vim.lsp.buf.definition() end, '[G]oto [D]efinition')
         nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-        nmap('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
-        nmap('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
+        nmap('gI', function () vim.lsp.buf.implementation() end, '[G]oto [I]mplementation')
+        nmap('<leader>D', function() vim.lsp.buf.type_definition() end, 'Type [D]efinition')
         nmap('<leader>lds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
         nmap('<leader>lws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
