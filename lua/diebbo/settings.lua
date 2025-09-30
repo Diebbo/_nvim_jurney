@@ -6,6 +6,9 @@ vim.o.hlsearch = false
 -- Make line numbers default
 vim.wo.number = true
 vim.wo.relativenumber = true
+vim.opt.winborder = "rounded"
+vim.opt.wrap = false
+vim.opt.smartindent = true
 
 -- Enable mouse mode
 vim.o.mouse = 'a'
@@ -87,3 +90,6 @@ vim.diagnostic.config({
     current_line = true,
   }
 })
+
+-- [[ theme ]]
+vim.cmd.colorscheme('gruvbox')
