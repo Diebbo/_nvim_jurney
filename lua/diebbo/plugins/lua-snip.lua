@@ -19,6 +19,17 @@ return {
       -- https://www.youtube.com/watch?v=FmHhonPjvvA
 
 
+      ls.add_snippets("typ", {
+        -- automatic snippet
+        -- make inline formula
+        s({ trig = "mk", wordTrig = false, regTrig = false}, {
+          t("$"), i(1, "formula"), t("$"), i(0)
+        }),
+        -- make display formula
+        s("dm", {
+          t("$ "), i(1, "formula"), t(" $"), i(0)
+        })
+      })
 
 
       ls.add_snippets("r", {
