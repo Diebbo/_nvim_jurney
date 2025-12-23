@@ -18,8 +18,6 @@ return {
           vim.keymap.set('n', keys, func, { buffer = ev.buf, desc = desc, noremap = true, silent = true })
         end
 
-        -- print('LSP attached to buffer: ' .. ev.buf)
-
         -- Set some keymaps for LSP
         nmap('<leader>ll', function()
           vim.cmd 'LspLog'
@@ -28,41 +26,23 @@ return {
         nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
         nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
-        nmap('gd', function () vim.lsp.buf.definition() end, '[G]oto [D]efinition')
+        nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
         nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-        nmap('gI', function () vim.lsp.buf.implementation() end, '[G]oto [I]mplementation')
-        nmap('<leader>D', function() vim.lsp.buf.type_definition() end, 'Type [D]efinition')
+        nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
+        nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
         nmap('<leader>lds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
         nmap('<leader>lws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
-        -- See `:help K` for why this keymap
         nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
         nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
-        -- Lesser used LSP functionality
         nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
-        -- Workspace functionality - these should work now
-        nmap('<leader>wa', function()
-          vim.lsp.buf.add_workspace_folder()
-          print 'Added workspace folder'
-        end, '[W]orkspace [A]dd Folder')
-
-        nmap('<leader>wr', function()
-          vim.lsp.buf.remove_workspace_folder()
-          print 'Removed workspace folder'
-        end, '[W]orkspace [R]emove Folder')
-
+        -- Workspace functionality
+        nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
+        nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
         nmap('<leader>wl', function()
-          local folders = vim.lsp.buf.list_workspace_folders()
-          if #folders == 0 then
-            print 'No workspace folders'
-          else
-            print 'Workspace folders:'
-            for i, folder in ipairs(folders) do
-              print('  ' .. i .. ': ' .. folder)
-            end
-          end
+          print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
         end, '[W]orkspace [L]ist Folders')
 
         -- Create a command `:Format` local to the LSP buffer
@@ -72,12 +52,7 @@ return {
       end,
     })
 
-    -- NOTE : Moved all this to Mason including local variables
-    -- used to enable autocompletion (assign to every lsp server config)
-    -- local capabilities = cmp_nvim_lsp.default_capabilities()
-    -- Change the Diagnostic symbols in the sign column (gutter)
-
-    -- Define sign icons for each severity
+    -- Define diagnostic signs
     local signs = {
       [vim.diagnostic.severity.ERROR] = ' ',
       [vim.diagnostic.severity.WARN] = ' ',
@@ -85,33 +60,37 @@ return {
       [vim.diagnostic.severity.INFO] = ' ',
     }
 
-    -- Set the diagnostic config with all icons
     vim.diagnostic.config {
       signs = {
-        text = signs, -- Enable signs in the gutter
+        text = signs,
       },
-      virtual_text = true, -- Specify Enable virtual text for diagnostics
-      underline = true, -- Specify Underline diagnostics
-      update_in_insert = false, -- Keep diagnostics active in insert mode
+      virtual_text = true,
+      underline = true,
+      update_in_insert = false,
     }
 
-    -- ( comment the ones in mason )
-    local lspconfig = require 'lspconfig'
-    local capabilities = require('blink.cmp').get_lsp_capabilities() -- Import capabilities from blink.cmp
-
-    -- get the servers table from mason
+    local capabilities = require('blink.cmp').get_lsp_capabilities()
     local Servers = require('diebbo.plugins.lsp.mason').get_installed_servers()
 
-    -- Loop through each server and set it up
+    -- Configure each server
     for server_name, server_config in pairs(Servers) do
-      lspconfig[server_name].setup {
+      vim.lsp.config(server_name, {
         capabilities = capabilities,
+        settings = server_config or {},
         on_attach = function(client, bufnr)
-          -- Disable formatting if you're using a separate formatter like Prettier
+          -- Enable completion
+          if client:supports_method('textDocument/completion') then
+            vim.lsp.completion.enable(true, client.id, bufnr, { autotrigger = true })
+          end
+
+          -- Disable LSP formatting if using external formatter
           client.server_capabilities.documentFormattingProvider = false
         end,
-        settings = server_config or {},
-      }
+      })
     end
+
+    -- Enable all configured servers
+    local server_names = vim.tbl_keys(Servers)
+    vim.lsp.enable(server_names)
   end,
 }
