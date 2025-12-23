@@ -50,4 +50,11 @@ vim.api.nvim_set_keymap('n', '<leader>it', '<cmd>setlocal spell spelllang=it<CR>
   { desc = 'Toggle spell check italian' })
 
 -- [[ Save and exit ]]
-vim.api.nvim_set_keymap('n', '<leader>ww', '<cmd>wq<CR>', { desc = 'Save and exit' })
+vim.api.nvim_set_keymap('n', '<leader><leader>w', '<cmd>w<CR>', { desc = 'Save' })
+vim.api.nvim_set_keymap('n', '<leader><leader>q', '<cmd>q!<CR>', { desc = 'Quit' })
+vim.api.nvim_set_keymap('n', '<leader><leader>s', '<cmd>wqa<CR>', { desc = 'Save all and exit' })
+
+
+-- [[ Moving in buffers ]]
+vim.api.nvim_set_keymap('n', '<leader>n', ':bnext<CR>', { desc = 'Go to next buffer' })
+vim.api.nvim_set_keymap('n', '<leader>m', ':bprevious<CR>', { desc = 'Go to previous buffer' })
