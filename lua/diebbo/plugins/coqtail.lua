@@ -1,5 +1,6 @@
 return {
   {
+    enabled=false,
     'whonore/Coqtail',
     init = function() end,
     config = function()

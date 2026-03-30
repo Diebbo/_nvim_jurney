@@ -6,6 +6,23 @@ return {
     { 'antosha417/nvim-lsp-file-operations', config = true },
     'masonorg/mason-lspconfig.nvim',
   },
+  opts = {
+    servers = {
+      -- https://github.com/microsoft/pyright/discussions/5852#discussioncomment-6874502
+      basedpyright = {
+        capabilities = {
+          textDocument = {
+            publishDiagnostics = {
+              tagSupport = {
+                valueSet = { 2 },
+              },
+            },
+          },
+        },
+      },
+      ruff_lsp = {},
+    },
+  },
   config = function()
     vim.api.nvim_create_autocmd('LspAttach', {
       group = vim.api.nvim_create_augroup('UserLspConfig', {}),

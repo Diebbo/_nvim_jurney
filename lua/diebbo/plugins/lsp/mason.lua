@@ -10,14 +10,14 @@ local Servers = {
 
   -- Web Dev
   html = {
-    filetypes = { 'html', 'twig', 'hbs' }
+    filetypes = { 'html', 'twig', 'hbs' },
   },
   cssls = {},
   angularls = {},
   tinymist = {},
-  coq_lsp = {
-    filetypes = { 'coq', 'v' },
-  },
+  -- coq_lsp = {
+  --   filetypes = { 'coq', 'v' },
+  -- },
   -- Lua
   lua_ls = {
     Lua = {
@@ -30,12 +30,12 @@ local Servers = {
         -- Get the language server to recognize the `vim` global
         globals = {
           'vim',
-          'require'
+          'require',
         },
       },
       workspace = {
         -- Make the server aware of Neovim runtime files
-        library = vim.api.nvim_get_runtime_file("", true),
+        library = vim.api.nvim_get_runtime_file('', true),
       },
       -- Do not send telemetry data containing a randomized but unique identifier
       telemetry = {
@@ -52,7 +52,7 @@ local Servers = {
         enableMoveToFileCodeAction = true,
       },
       typescript = {
-        updateImportsOnFileMove = { enabled = "always" },
+        updateImportsOnFileMove = { enabled = 'always' },
         suggest = {
           completeFunctionCalls = true,
         },
@@ -74,11 +74,20 @@ local Servers = {
           functionReturnTypes = true,
           functionParameterTypes = true,
         },
+        capabilities = {
+          textDocument = {
+            publishDiagnostics = {
+              tagSupport = {
+                valueSet = { 2 },
+              },
+            },
+          },
+        },
       },
     },
     python = {
       analysis = {
-        typeCheckingMode = "basic", -- can be "off", "basic", or "strict"
+        typeCheckingMode = 'basic', -- can be "off", "basic", or "strict"
         autoSearchPaths = true,
         useLibraryCodeForTypes = true,
       },
@@ -91,61 +100,59 @@ local Servers = {
   },
 }
 
-
 local Linters = {
-  "prettier", -- prettier formatter
-  "stylua",   -- lua formatter
-  "isort",    -- python formatter
-  "bibtex-tidy",
-  "pylint",
-  "clangd",
-  "denols",
-  "eslint_d",
-  "black",
-  "ruff",
+  'prettier', -- prettier formatter
+  'stylua', -- lua formatter
+  'isort', -- python formatter
+  'bibtex-tidy',
+  'pylint',
+  'clangd',
+  'denols',
+  'eslint_d',
+  'black',
+  'ruff',
 }
 
 return {
-  "mason-org/mason.nvim",
+  'mason-org/mason.nvim',
   lazy = false,
   dependencies = {
-    "mason-org/mason-lspconfig.nvim",
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    'mason-org/mason-lspconfig.nvim',
+    'WhoIsSethDaniel/mason-tool-installer.nvim',
     -- "hrsh7th/cmp-nvim-lsp",
-    "neovim/nvim-lspconfig",
-    "saghen/blink.cmp",
+    'neovim/nvim-lspconfig',
+    'saghen/blink.cmp',
   },
   config = function()
     -- import mason and mason_lspconfig
-    local mason = require("mason")
-    local mason_lspconfig = require("mason-lspconfig")
-    local mason_tool_installer = require("mason-tool-installer")
+    local mason = require 'mason'
+    local mason_lspconfig = require 'mason-lspconfig'
+    local mason_tool_installer = require 'mason-tool-installer'
 
     -- enable mason and configure icons
-    mason.setup({
+    mason.setup {
       ui = {
         icons = {
-          package_installed = "✓",
-          package_pending = "➜",
-          package_uninstalled = "✗",
+          package_installed = '✓',
+          package_pending = '➜',
+          package_uninstalled = '✗',
         },
       },
-    })
+    }
 
     -- vim.notify("installing lsp for " .. vim.inspect(vim.tbl_keys(Servers)), vim.log.levels.INFO)
-    mason_lspconfig.setup({
+    mason_lspconfig.setup {
       automatic_enable = false,
       -- servers for mason to install
       ensure_installed = vim.tbl_keys(Servers),
-    })
+    }
 
-
-    mason_tool_installer.setup({
+    mason_tool_installer.setup {
       ensure_installed = Linters,
 
       -- NOTE: mason BREAKING Change! Removed setup_handlers
       -- moved lsp configuration settings back into lspconfig.lua file
-    })
+    }
   end,
   -- Function to get the installed servers
   get_installed_servers = function()

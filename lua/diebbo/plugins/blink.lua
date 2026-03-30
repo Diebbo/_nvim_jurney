@@ -4,11 +4,10 @@ return {
     dependencies = {
       'rafamadriz/friendly-snippets',
       -- reference to lua snippet
-      'allaman/emoji.nvim',
       'saghen/blink.compat',
       'L3MON4D3/LuaSnip',
     },
-    version = '*',
+    version = '1.*',
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     opts = {
@@ -21,40 +20,26 @@ return {
       },
       snippets = { preset = 'luasnip' },
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'emoji', 'buffer' },
+        default = { 'lsp', 'path', 'snippets', 'buffer' },
         -- optionally disable cmdline completions
         -- cmdline = {},
-        providers = {
-          emoji = {
-            name = 'emoji',
-            module = 'blink.compat.source',
-            -- overwrite kind of suggestion
-            transform_items = function(ctx, items)
-              local kind = require('blink.cmp.types').CompletionItemKind.Text
-              for i = 1, #items do
-                items[i].kind = kind
-              end
-              return items
-            end,
-          },
-        },
       },
       signature = { enabled = true },
       completion = {
-        trigger = { show_in_snippet = false },
+        trigger = { show_in_snippet = true },
         documentation = { auto_show = true, auto_show_delay_ms = 200 },
         ghost_text = { enabled = true, show_with_menu = true },
         accept = {
           auto_brackets = {
             enabled = true,
             default_brackets = { '(', ')' },
-            override_brackets_for_filetypes = {
-              lua = { '(', ')' },
-              python = function(item)
-                -- Custom logic based on completion item
-                return item.kind == 'Function' and { '(', ')' } or {}
-              end,
-            },
+            -- override_brackets_for_filetypes = {
+            --   lua = { '(', ')' },
+            --   python = function(item)
+            --     -- Custom logic based on completion item
+            --     return item.kind == 'Function' and { '(', ')' } or {}
+            --   end,
+            -- },
             force_allow_filetypes = { 'rust', 'cpp', 'typst', 'typ' },
             blocked_filetypes = { 'markdown', 'text' },
             kind_resolution = {
