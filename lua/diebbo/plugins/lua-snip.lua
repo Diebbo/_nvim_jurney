@@ -27,6 +27,10 @@ return {
           ls.change_choice(1)
         end
       end, { silent = true })
+
+      ls.config.set_config {
+          enable_autosnippets = true,
+      }
     end,
   },
 }

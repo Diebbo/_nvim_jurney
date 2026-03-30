@@ -7,7 +7,7 @@ vim.o.hlsearch = false
 vim.wo.number = true
 vim.wo.relativenumber = true
 vim.opt.winborder = "rounded"
-vim.opt.wrap = false
+vim.opt.wrap = true
 vim.opt.smartindent = true
 
 -- Enable mouse mode

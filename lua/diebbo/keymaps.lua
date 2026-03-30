@@ -36,25 +36,29 @@ km.set('n', '<leader>x', ':.lua<CR>', { desc = 'Execute current lua line' })
 vim.keymap.set('v', '<leader>x', ':lua <CR>', { desc = 'Execute selected lua code' })
 
 -- oil
-vim.api.nvim_set_keymap('n', '<leader>o', '<cmd>Oil<CR>',
-  { desc = 'Open oil on current file' })
+vim.api.nvim_set_keymap('n', '<leader>o', '<cmd>Oil<CR>', { desc = 'Open oil on current file' })
 
 -- exit terminal mode
-vim.api.nvim_set_keymap('t', '<Esc><Esc>', '<C-\\><C-n>',
-  { desc = 'Exit terminal mode' })
+vim.api.nvim_set_keymap('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 -- [[ Spell check ]]
-vim.api.nvim_set_keymap('n', '<leader>us', '<cmd>setlocal spell!<CR>',
-  { desc = 'Toggle spell check' })
-vim.api.nvim_set_keymap('n', '<leader>it', '<cmd>setlocal spell spelllang=it<CR>',
-  { desc = 'Toggle spell check italian' })
+vim.api.nvim_set_keymap('n', '<leader>us', '<cmd>setlocal spell!<CR>', { desc = 'Toggle spell check' })
+vim.api.nvim_set_keymap('n', '<leader>it', '<cmd>setlocal spell spelllang=it<CR>', { desc = 'Toggle spell check italian' })
 
 -- [[ Save and exit ]]
 vim.api.nvim_set_keymap('n', '<leader><leader>w', '<cmd>w<CR>', { desc = 'Save' })
 vim.api.nvim_set_keymap('n', '<leader><leader>q', '<cmd>q!<CR>', { desc = 'Quit' })
 vim.api.nvim_set_keymap('n', '<leader><leader>s', '<cmd>wqa<CR>', { desc = 'Save all and exit' })
 
-
 -- [[ Moving in buffers ]]
 vim.api.nvim_set_keymap('n', '<leader>n', ':bnext<CR>', { desc = 'Go to next buffer' })
 vim.api.nvim_set_keymap('n', '<leader>m', ':bprevious<CR>', { desc = 'Go to previous buffer' })
+
+-- [[ Snippets creator ]]
+vim.keymap.set('n', '<leader>ns', function()
+  require('diebbo.snippets-creator').create()
+end, { desc = 'New snippet for current filetype' })
+
+vim.keymap.set('v', '<leader>ns', function()
+  require('diebbo.snippets-creator').create_from_visual()
+end, { desc = 'New snippet from selection' })
