@@ -1118,4 +1118,5 @@ plot.plot(size: (5, 5), {
       t { '', '#let comp = $compose$' },
     }
   ),
+  s({ trig = "celem", name = "categories of elements" }, t("integral ")),
 }

@@ -2,15 +2,19 @@ return {
   {
     'github/copilot.vim',
     config = function()
-      -- vim.g.copilot_filetypes = {
-      --   ['*'] = false,  -- Disable for all file types by default
-      --   ['javascript'] = true,
-      --   ['typescript'] = true,
-      --   ['python'] = true,
-      --   ['lua'] = true,
-      --   ['html'] = true,
-      --   ['css'] = true,
-      -- }
+      vim.g.copilot_filetypes = {
+        ['*'] = false,  -- Disable for all file types by default
+        ['lua'] = true,
+        ['python'] = true,
+        ['javascript'] = true,
+        ['typescript'] = true,
+        ['go'] = true,
+        ['rust'] = true,
+        ['java'] = true,
+        ['c'] = true,
+        ['cpp'] = true,
+        ['typst'] = true,
+      }
       local set_k = vim.api.nvim_set_keymap
       set_k('i', '<C-g>', 'copilot#Accept("\\<CR>")', { expr = true, silent = true })
       set_k('i', '<C-t>', '<Plug>(copilot-accept-word)', { noremap = true, silent = true })

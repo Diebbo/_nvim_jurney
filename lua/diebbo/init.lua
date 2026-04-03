@@ -14,6 +14,7 @@ require("lazy").setup(
     }
 )
 
+require('diebbo.util')
 require('diebbo.keymaps')
 require('diebbo.settings')
 require('diebbo.auto-format')

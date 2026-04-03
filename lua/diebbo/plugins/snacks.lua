@@ -1,16 +1,30 @@
 return {
-  "folke/snacks.nvim",
-  opts = {
-    dashboard = { enabled = false },
-    animate = { enabled = false },
-    scroll = { enabled = false },
-    indent = { enabled = false },
-    input = {
-      win = {
-        -- taken from the commented line from input docs.
-        relative = "cursor",
-        row = -3,
-        col = 0,
+  {
+    'folke/snacks.nvim',
+    priority = 1000,
+    lazy = false,
+    opts = {
+
+      dashboard = { enabled = false },
+      animate = { enabled = false },
+      scroll = { enabled = false },
+      indent = { enabled = false },
+      input = {
+        win = {
+          -- taken from the commented line from input docs.
+          relative = 'cursor',
+          row = -3,
+          col = 0,
+        },
+      },
+    },
+    keys = {
+      {
+        '<leader>,',
+        function()
+          Snacks.picker.buffers()
+        end,
+        desc = 'Buffers',
       },
     },
   },
