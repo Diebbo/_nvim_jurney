@@ -149,4 +149,13 @@ function M.create_from_visual()
   prompt_and_save(ft, body_lines)
 end
 
+-- register user commands that wrap the module functions
+vim.api.nvim_create_user_command("SnipNew", function()
+  M.create()
+end, { desc = "Create snippet for current filetype" })
+
+vim.api.nvim_create_user_command("SnipFromSel", function()
+  M.create_from_visual()
+end, { desc = "Create snippet from visual selection", range = true })
+
 return M
