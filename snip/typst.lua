@@ -1119,4 +1119,7 @@ plot.plot(size: (5, 5), {
     }
   ),
   s({ trig = "celem", name = "categories of elements" }, t("integral ")),
+  s({ trig = "Fn", name = "Finite field n" }, t("FF^n")),
+  s({ trig = "nset", name = "n set" }, t("{0,1}^n")),
+  s({ trig = "inv", name = "inverse" }, t("^(-1)")),
 }
