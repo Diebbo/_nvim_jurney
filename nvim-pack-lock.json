@@ -20,6 +20,10 @@
       "rev": "78c638293f0ea6a2245eca46e9933ee271792d7e",
       "src": "https://github.com/zbirenbaum/copilot.lua"
     },
+    "koda.nvim": {
+      "rev": "4668e307f2f3a1e38bd627b14d13368ebf5b8d9f",
+      "src": "https://github.com/oskarnurm/koda.nvim"
+    },
     "lualine.nvim": {
       "rev": "131a558e13f9f28b15cd235557150ccb23f89286",
       "src": "https://github.com/nvim-lualine/lualine.nvim"

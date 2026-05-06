@@ -106,7 +106,13 @@ end, { desc = 'Show keymaps' })
 
 -- INFO: plugins
 local gh = 'https://github.com/'
-vim.cmd.colorscheme 'catppuccin'
+
+vim.pack.add({
+  'https://github.com/oskarnurm/koda.nvim',
+}, { confirm = false })
+
+-- require('koda').setup { transparent = true }
+vim.cmd 'colorscheme koda'
 
 vim.pack.add({ 'https://github.com/nvim-treesitter/nvim-treesitter' }, { confirm = false })
 
