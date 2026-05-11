@@ -82,6 +82,7 @@ map('n', '<leader>it', '<cmd>setlocal spell spelllang=it<CR>', { desc = 'Toggle 
 map('n', '<leader><leader>w', '<cmd>w<CR>', { desc = 'Save' })
 map('n', '<leader><leader>q', '<cmd>q!<CR>', { desc = 'Quit' })
 map('n', '<leader><leader>s', '<cmd>wqa<CR>', { desc = 'Save all and exit' })
+map('n', '<leader>o', ':Ex', { desc = 'back to menu' })
 
 map('v', '<leader>ns', function()
   require('diebbo.snippets-creator').create_from_visual()
