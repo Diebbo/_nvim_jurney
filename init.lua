@@ -82,7 +82,7 @@ map('n', '<leader>it', '<cmd>setlocal spell spelllang=it<CR>', { desc = 'Toggle 
 map('n', '<leader><leader>w', '<cmd>w<CR>', { desc = 'Save' })
 map('n', '<leader><leader>q', '<cmd>q!<CR>', { desc = 'Quit' })
 map('n', '<leader><leader>s', '<cmd>wqa<CR>', { desc = 'Save all and exit' })
-map('n', '<leader>o', ':Ex', { desc = 'back to menu' })
+map('n', '<leader>o', ':Ex<CR>', { desc = 'back to menu' })
 
 map('v', '<leader>ns', function()
   require('diebbo.snippets-creator').create_from_visual()
@@ -109,11 +109,18 @@ end, { desc = 'Show keymaps' })
 local gh = 'https://github.com/'
 
 vim.pack.add({
-  'https://github.com/oskarnurm/koda.nvim',
+  gh .. 'oskarnurm/koda.nvim',
 }, { confirm = false })
 
 -- require('koda').setup { transparent = true }
 vim.cmd 'colorscheme koda'
+
+-- projects
+vim.pack.add({
+  gh .. 'ahmedkhalf/project.nvim',
+}, { confirm = false })
+
+require('project_nvim').setup {}
 
 vim.pack.add({ 'https://github.com/nvim-treesitter/nvim-treesitter' }, { confirm = false })
 
@@ -135,15 +142,58 @@ require('nvim-treesitter.config').setup {
   },
 }
 
-vim.pack.add {
-  { src = 'https://github.com/saghen/blink.lib' },
-  { src = 'https://github.com/saghen/blink.cmp' },
+vim.pack.add({
+  gh .. 'saghen/blink.lib',
+  gh .. 'zbirenbaum/copilot.lua',
+
+  gh .. 'saghen/blink.cmp', -- Dep on lib
+
+  gh .. 'fang2hou/blink-copilot', -- Depends on blink and copilot
   gh .. 'L3MON4D3/LuaSnip', -- add this
+}, { confirm = false })
+
+require('copilot').setup {
+  -- suggestion = { enabled = false },
+  -- panel = { enabled = false },
+  copilot_node_command = vim.fn.expand '$HOME' .. '/.nvm/versions/node/v22.22.3/bin/node',
+  filetypes = {
+    ['*'] = false, -- Disable for all file types by default
+    ['lua'] = true,
+    ['python'] = true,
+    ['javascript'] = true,
+    ['typescript'] = true,
+    ['go'] = true,
+    ['rust'] = true,
+    ['java'] = true,
+    ['c'] = true,
+    ['cpp'] = true,
+    ['typst'] = true,
+  },
+  copilot_model = '',
 }
 
+-- local cop_sugg = require 'copilot.suggestion'
+-- map('i', '<C-g>', cop_sugg.accept_line, { expr = true, silent = true })
+-- map('i', '<C-t>', cop_sugg.accept_word, { noremap = true, silent = true })
+-- vim.api.nvim_create_autocmd('User', {
+--   pattern = 'BlinkCmpMenuOpen',
+--   callback = function()
+--     vim.b.copilot_suggestion_hidden = true
+--   end,
+-- })
+-- vim.api.nvim_create_autocmd('User', {
+--   pattern = 'BlinkCmpMenuClose',
+--   callback = function()
+--     vim.b.copilot_suggestion_hidden = false
+--   end,
+-- })
 -- load your custom snippets directory
 require('luasnip.loaders.from_lua').load {
   paths = vim.fn.stdpath 'config' .. '/snip',
+}
+
+require('luasnip').config.set_config {
+  enable_autosnippets = true,
 }
 
 require 'snippets.creator'
@@ -156,6 +206,17 @@ require('blink.cmp').setup {
   completion = {
     documentation = {
       auto_show = true,
+    },
+  },
+  sources = {
+    default = { 'lsp', 'path', 'snippets', 'buffer', 'copilot' },
+    providers = {
+      copilot = {
+        name = 'copilot',
+        module = 'blink-copilot',
+        score_offset = 100,
+        async = true,
+      },
     },
   },
   signature = { enabled = true },
@@ -226,7 +287,6 @@ local lsp_servers = {
   rust_analyzer = {},
   gopls = {},
   ts_ls = {},
-  tinymist = {},
   html = {},
   cssls = {},
   jsonls = {},
@@ -273,12 +333,11 @@ require('mason-tool-installer').setup {
 for server, config in pairs(lsp_servers) do
   vim.lsp.config(server, {
     settings = config,
-
     -- only create the keymaps if the server attaches successfully
     on_attach = function(_, bufnr)
       vim.keymap.set('n', 'grd', vim.lsp.buf.definition, { buffer = bufnr, desc = 'vim.lsp.buf.definition()' })
 
-      vim.keymap.set('n', 'grf', vim.lsp.buf.format, { buffer = bufnr, desc = 'vim.lsp.buf.format()' })
+      vim.keymap.set('n', 'grf', vim.lsp.buf.format, { desc = 'vim.lsp.buf.format()' })
     end,
   })
 end
@@ -363,6 +422,7 @@ vim.pack.add({
 
 require('telescope').setup {}
 
+local telescope = require 'telescope'
 local pickers = require 'telescope.builtin'
 
 map('n', '<leader>sp', pickers.builtin, { desc = '[S]earch Builtin [P]ickers' })
@@ -379,6 +439,15 @@ map('n', '<leader>sc', function()
     search_dirs = { vim.fn.stdpath 'config' .. '/init.lua' },
   }
 end, { desc = 'Search in init.lua' })
+map('n', '<C-o>', function()
+  pickers.live_grep {
+    prompt_title = 'Open directory',
+    search_dirs = { vim.fn.expand '~/programming/' },
+  }
+end, { desc = 'Project picker' })
+
+-- telescope.load_extension 'projects'
+-- map('n', 'wc', telescope.extensions.projects.projects {}, opts)
 
 -- INFO: better statusline
 vim.pack.add({ 'https://github.com/nvim-lualine/lualine.nvim' }, { confirm = false })
@@ -407,43 +476,11 @@ vim.pack.add({
   'https://github.com/windwp/nvim-autopairs', -- auto pairs
   'https://github.com/folke/todo-comments.nvim', -- highlight TODO/INFO/WARN comments
   gh .. 'norcalli/nvim-colorizer.lua',
-  gh .. 'zbirenbaum/copilot.lua',
 }, { confirm = false })
 
 require('nvim-autopairs').setup()
 require('todo-comments').setup()
 require('colorizer').setup()
-require('copilot').setup {
-  filetypes = {
-    ['*'] = false, -- Disable for all file types by default
-    ['lua'] = true,
-    ['python'] = true,
-    ['javascript'] = true,
-    ['typescript'] = true,
-    ['go'] = true,
-    ['rust'] = true,
-    ['java'] = true,
-    ['c'] = true,
-    ['cpp'] = true,
-    ['typst'] = true,
-  },
-  -- copilot_model = "Claude Sonnet 4.6",
-}
-local cop_sugg = require 'copilot.suggestion'
-map('i', '<C-g>', cop_sugg.accept_line, { expr = true, silent = true })
-map('i', '<C-t>', cop_sugg.accept_word, { noremap = true, silent = true })
-vim.api.nvim_create_autocmd('User', {
-  pattern = 'BlinkCmpMenuOpen',
-  callback = function()
-    vim.b.copilot_suggestion_hidden = true
-  end,
-})
-vim.api.nvim_create_autocmd('User', {
-  pattern = 'BlinkCmpMenuClose',
-  callback = function()
-    vim.b.copilot_suggestion_hidden = false
-  end,
-})
 
 -- uncomment to enable automatic plugin updates
 -- vim.pack.update()
