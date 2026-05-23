@@ -81,7 +81,7 @@ map('n', '<leader>us', '<cmd>setlocal spell!<CR>', { desc = 'Toggle spell check'
 map('n', '<leader>it', '<cmd>setlocal spell spelllang=it<CR>', { desc = 'Toggle spell check italian' })
 map('n', '<leader><leader>w', '<cmd>w<CR>', { desc = 'Save' })
 map('n', '<leader><leader>q', '<cmd>q!<CR>', { desc = 'Quit' })
-map('n', '<leader><leader>s', '<cmd>wqa<CR>', { desc = 'Save all and exit' })
+map('n', '<leader><leader>s', '<cmd>wqa!<CR>', { desc = 'Save all and exit' })
 map('n', '<leader>o', ':Ex<CR>', { desc = 'back to menu' })
 
 map('v', '<leader>ns', function()
